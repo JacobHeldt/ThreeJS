@@ -1,6 +1,10 @@
 import React, {useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
+import { IconsColors, hexToRgb } from '../config/helpers';
+
+import { MdOutlineColorLens } from 'react-icons/md'
+import { MdOutlineImage } from 'react-icons/md'
 
 import config from '../config/config'
 import state from '../store';
@@ -104,17 +108,10 @@ const Customizer = () => {
             className="absolute top-0 left-0 z-10"
             {...slideAnimation('left')}
           >
-
             <div className="flex items-center min-h-screen">
-              <div className="editortabs-container tabs">
-                {EditorTabs.map((tab) => (
-                  <Tab 
-                    key={tab.name}
-                    tab={tab}
-                    handleClick={() => setActiveEditorTab(tab.name)}
-                  />
-                ))}
-
+              <div className="editortabs-container tabs" style={{ background: `rgba(${hexToRgb(snap.color)}, 0.1)` }}>
+                <MdOutlineColorLens style={{color: snap.color, filter: IconsColors(snap.color)}} fontSize='50px' onClick={() => {setActiveEditorTab('colorpicker'); console.log(IconsColors(snap.color))}}/>
+                <MdOutlineImage style={{color: snap.color, filter: IconsColors(snap.color)}} fontSize='50px' onClick={() => {setActiveEditorTab('filepicker'); console.log(IconsColors(snap.color))}}/>
                 {generateTabContent()}
               </div>
             </div>
