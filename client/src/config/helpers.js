@@ -55,3 +55,23 @@ export function hexToRgb(hex) {
   const b = parseInt(hex.slice(5, 7), 16);
   return `${r}, ${g}, ${b}`;
 }
+
+export function darkenHexColor(hexColor, amount) {
+  // Remove the "#" symbol from the beginning of the hex string
+  hexColor = hexColor.replace("#", "");
+
+  // Convert the hex string to RGB values
+  let r = parseInt(hexColor.substr(0, 2), 16);
+  let g = parseInt(hexColor.substr(2, 2), 16);
+  let b = parseInt(hexColor.substr(4, 2), 16);
+
+  // Calculate the darker RGB values
+  r = Math.max(r - amount, 0);
+  g = Math.max(g - amount, 0);
+  b = Math.max(b - amount, 0);
+
+  // Convert the darker RGB values back to a hex string
+  let darkerHexColor = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+
+  return darkerHexColor;
+}

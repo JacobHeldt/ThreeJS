@@ -2,7 +2,7 @@ import React from 'react'
 import { useSnapshot } from 'valtio'
 
 import state from '../store'
-import { getContrastingColor } from '../config/helpers';
+import { getContrastingColor, darkenHexColor } from '../config/helpers';
 
 const CustomButton = ({type, title, customStyles, handleClick}) => {
     const snap = useSnapshot(state);
@@ -15,8 +15,8 @@ const CustomButton = ({type, title, customStyles, handleClick}) => {
         } else if(type === "outline") {
             return {
                 borderWidth: '1px',
-                borderColor: snap.color,
-                color: snap.color,
+                borderColor:  darkenHexColor(snap.color, 50),
+                color: darkenHexColor(snap.color, 50),
             }
         }
     }
