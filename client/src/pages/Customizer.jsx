@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
-import { IconsColors, hexToRgb } from '../config/helpers';
+import { IconsColors, hexToRgb, getContrastingColor, darkenHexColor } from '../config/helpers';
 
 import { MdOutlineColorLens } from 'react-icons/md'
 import { MdOutlineImage } from 'react-icons/md'
@@ -37,7 +37,7 @@ const Customizer = () => {
         return <FilePicker 
           file={file}
           setFile={setFile}
-          readFile={readFile}
+          rea dFile={readFile}
         />
       default: 
         return null;
@@ -108,6 +108,19 @@ const Customizer = () => {
             className="absolute top-0 left-0 z-10"
             {...slideAnimation('left')}
           >
+
+          {/* <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          height: '100vh',
+          width: '95vw',
+            position: 'absolute',
+            color: darkenHexColor(snap.color, 50)
+          }}> */}
+            {/* <h1 style={{ fontSize: '20px', width: '350px', textAlign: 'center', fontStyle: 'italic', fontWeight: 500 }}>Don't settle for boring - unleash your creativity and design unique and bold t-shirts.</h1> */}
+          {/* </div> */}
+
             <div className="flex items-center min-h-screen">
               <div className="editortabs-container tabs" style={{ background: `rgba(${hexToRgb(snap.color)}, 0.1)` }}>
                 <MdOutlineColorLens style={{color: snap.color, filter: IconsColors(snap.color)}} fontSize='50px' onClick={() => {setActiveEditorTab('colorpicker'); console.log(IconsColors(snap.color))}}/>
@@ -119,7 +132,7 @@ const Customizer = () => {
           </motion.div>
 
           <motion.div
-            className="absolute z-10 top-5 right-5"
+            className="absolute z-10 top-5 left-5"
             {...fadeAnimation}
           >
             <CustomButton 

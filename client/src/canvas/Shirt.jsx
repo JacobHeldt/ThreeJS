@@ -27,6 +27,7 @@ const Shirt = () => {
                 material={materials.lambert1}
                 material-roughness={.9}
                 dispose={null}
+                style={{zIndex: '100'}}
             >
 
             {snap.isFullTexture && (
